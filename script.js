@@ -2,6 +2,10 @@ let gridSize = 16;
 
 const container = document.querySelector("main");
 
+function setSlotBackground(event) {
+  event.target.classList.add("slot_hovered");
+}
+
 function drawGrid() {
   container.innerHTML = "";
 
@@ -11,7 +15,10 @@ function drawGrid() {
 
     for (let j = 0; j < gridSize; j++) {
       const slot = document.createElement("div");
+
       slot.classList.add("slot");
+      slot.addEventListener("mouseenter", setSlotBackground);
+
       rowDiv.appendChild(slot);
     }
 

@@ -43,3 +43,7 @@ main {
   background-color: #FFFFFF;
   border: 1px solid var(--background_color);
 }
+
+.slot_hovered {
+  background-color: #616161;
+}
