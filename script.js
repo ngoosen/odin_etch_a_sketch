@@ -1,4 +1,5 @@
 let gridSize = 16;
+let showMenu = false;
 
 const container = document.querySelector("main");
 
@@ -25,5 +26,19 @@ function drawGrid() {
     container.appendChild(rowDiv);
   }
 }
+
+function toggleMenu() {
+  showMenu = !showMenu;
+  const menuDiv = document.querySelector(".buttons");
+
+  if (showMenu) {
+    menuDiv.classList.remove("buttons_hidden");
+  } else {
+    menuDiv.classList.add("buttons_hidden");
+  }
+}
+
+const toggleButtonsMenuButton = document.querySelector("#showButtons");
+toggleButtonsMenuButton.addEventListener("click", toggleMenu);
 
 drawGrid();
