@@ -41,4 +41,7 @@ function toggleMenu() {
 const toggleButtonsMenuButton = document.querySelector("#showButtons");
 toggleButtonsMenuButton.addEventListener("click", toggleMenu);
 
+const clearGridButton = document.querySelector("#clearGrid");
+clearGridButton.addEventListener("click", drawGrid);
+
 drawGrid();
