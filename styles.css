@@ -65,7 +65,7 @@ button:hover {
   align-items: center;
   gap: 20px;
 
-  width: 20vw;
+  width: 370px;
   height: 50vh;
 
   padding: 50px;
@@ -77,10 +77,13 @@ button:hover {
 }
 
 .buttons_hidden {
-  transform: translateX(20vw);
+  transform: translateX(370px);
 }
 
-.buttons button:not(#showButtons) {
+#clearGrid,
+#toggleGridSizeInput {
+  position: relative;
+
   appearance: none;
   border: none;
 
@@ -95,12 +98,14 @@ button:hover {
 }
 
 
-.buttons button:not(#showButtons):hover {
+#clearGrid:hover,
+#toggleGridSizeInput:hover {
   transform: scale(1.05);
   background-color: #9ed0f8;
 }
 
-.buttons button:not(#showButtons):active {
+#clearGrid:active,
+#toggleGridSizeInput:active {
   transform: scale(.95);
   background-color: #4aa2eb;
 }
@@ -118,4 +123,64 @@ button:hover {
 
   border-radius: 10px 0 0 10px;
   background-color: var(--buttons_background_color);
+}
+
+#inputDiv {
+  position: relative;
+  z-index: -1;
+  top: -25px;
+
+  width: 230px;
+  height: 200px;
+
+  padding: 10px;
+  padding-top: 30px;
+
+  border-radius: 0 0 10px 10px;
+  background-color: #c3e4ff;
+
+  font-size: 16px;
+}
+
+#inputDiv input {
+  border: none;
+
+  width: 130px;
+  height: 30px;
+
+  font-size: 16px;
+
+  margin: 20px 0;
+  margin-right: 10px;
+
+  border-radius: 5px;
+}
+
+#inputDiv button {
+  appearance: none;
+  border: none;
+
+  height: 30px;
+
+  margin: 20px 0;
+  padding: 0 10px;
+
+  color: #FFFFFF;
+  border-radius: 5px;
+  background-color: #4aa2eb;
+  transition: all .1s;
+}
+
+
+#inputDiv button:hover {
+  color: #4aa2eb;
+  background-color: #FFFFFF;
+}
+
+#inputDiv button:active {
+  transform: scale(.85);
+}
+
+.invalid_input {
+  border-color: #fd4848;
 }

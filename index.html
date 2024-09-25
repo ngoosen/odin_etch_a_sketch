@@ -11,10 +11,16 @@
 
   <main></main>
 
-  <div class="buttons buttons_hidden">
+  <div class="buttons">
     <button id="showButtons">X</button>
     <button id="clearGrid">Clear grid</button>
-    <button id="changeGridSize">Change grid size</button>
+    <button id="toggleGridSizeInput">Change grid size</button>
+
+    <div id="inputDiv">
+      <label for="size">Enter a grid size (max 100)</label>
+      <input type="number" name="size" id="size" min="1" max="100">
+      <button id="changeGridSize">Ok</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
