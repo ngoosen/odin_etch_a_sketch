@@ -5,8 +5,18 @@ let showGridSizeInput = false;
 const container = document.querySelector("main");
 const changeGridSizeInput = document.querySelector("#size");
 
+function generateRandomColour() {
+  const r = Math.round(Math.random() * 255);
+  const g = Math.round(Math.random() * 255);
+  const b = Math.round(Math.random() * 255);
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 function setSlotBackground(event) {
-  event.target.classList.add("slot_hovered");
+  if (event.target.style.backgroundColor === "") {
+    event.target.style.backgroundColor = generateRandomColour();
+  }
 }
 
 function drawGrid() {
