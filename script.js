@@ -13,9 +13,26 @@ function generateRandomColour() {
   return `rgba(${r}, ${g}, ${b}, .1)`;
 }
 
+function updateAlpha(color) {
+  const cleanedString = color.replace("rgba(", "").replace(")", "");
+  const splitString = cleanedString.split(",");
+  const currentAlpha = splitString.slice(-1)[0];
+
+  if (parseInt(currentAlpha) >= 1) {
+    return;
+  }
+
+  const newAlpha = (parseFloat(currentAlpha) + 0.1).toFixed(1);
+  return `rgba(${splitString[0]}, ${splitString[1]}, ${splitString[2]}, ${newAlpha}`;
+}
+
 function setSlotBackground(event) {
-  if (event.target.style.backgroundColor === "") {
+  const currentColor = event.target.style.backgroundColor;
+
+  if (currentColor === "") {
     event.target.style.backgroundColor = generateRandomColour();
+  } else {
+    event.target.style.backgroundColor = updateAlpha(currentColor);
   }
 }
 
