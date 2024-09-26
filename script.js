@@ -10,7 +10,7 @@ function generateRandomColour() {
   const g = Math.round(Math.random() * 255);
   const b = Math.round(Math.random() * 255);
 
-  return `rgb(${r}, ${g}, ${b})`;
+  return `rgba(${r}, ${g}, ${b}, .1)`;
 }
 
 function setSlotBackground(event) {
