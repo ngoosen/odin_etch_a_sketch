@@ -1,5 +1,6 @@
 let gridSize = 16;
 let showMenu = false;
+let showGridSizeInput = false;
 
 const container = document.querySelector("main");
 
@@ -38,10 +39,25 @@ function toggleMenu() {
   }
 }
 
+function toggleGridSizeInput() {
+  showGridSizeInput = !showGridSizeInput;
+
+  const inputDiv = document.querySelector("#inputDiv");
+
+  if (showGridSizeInput) {
+    inputDiv.classList.remove("input_hidden");
+  } else {
+    inputDiv.classList.add("input_hidden");
+  }
+}
+
 const toggleButtonsMenuButton = document.querySelector("#showButtons");
 toggleButtonsMenuButton.addEventListener("click", toggleMenu);
 
 const clearGridButton = document.querySelector("#clearGrid");
 clearGridButton.addEventListener("click", drawGrid);
+
+const toggleGridSizeInputButton = document.querySelector("#toggleGridSizeInput");
+toggleGridSizeInputButton.addEventListener("click", toggleGridSizeInput);
 
 drawGrid();
