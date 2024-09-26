@@ -3,6 +3,7 @@ let showMenu = false;
 let showGridSizeInput = false;
 
 const container = document.querySelector("main");
+const changeGridSizeInput = document.querySelector("#size");
 
 function setSlotBackground(event) {
   event.target.classList.add("slot_hovered");
@@ -51,6 +52,24 @@ function toggleGridSizeInput() {
   }
 }
 
+function changeGridSize() {
+  const enteredSize = changeGridSizeInput.value;
+
+  if (
+    enteredSize === "" ||
+    isNaN(parseInt(enteredSize)) ||
+    parseInt(enteredSize) > 100 ||
+    parseInt(enteredSize) < 1
+  ) {
+    changeGridSizeInput.classList.add("invalid_input");
+    return;
+  }
+
+  changeGridSizeInput.classList.remove("invalid_input");
+  gridSize = parseInt(enteredSize);
+  drawGrid();
+}
+
 const toggleButtonsMenuButton = document.querySelector("#showButtons");
 toggleButtonsMenuButton.addEventListener("click", toggleMenu);
 
@@ -59,5 +78,10 @@ clearGridButton.addEventListener("click", drawGrid);
 
 const toggleGridSizeInputButton = document.querySelector("#toggleGridSizeInput");
 toggleGridSizeInputButton.addEventListener("click", toggleGridSizeInput);
+
+const changeGridSizeButton = document.querySelector("#changeGridSize");
+changeGridSizeButton.addEventListener("click", changeGridSize);
+
+changeGridSizeInput.addEventListener("focus", () => changeGridSizeInput.classList.remove("invalid_input"));
 
 drawGrid();

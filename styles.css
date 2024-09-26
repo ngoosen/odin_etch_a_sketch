@@ -187,9 +187,11 @@ button:hover {
 }
 
 .input_div button:active {
+  color: #FFFFFF;
+  background-color: #4aa2eb;
   transform: scale(.85);
 }
 
 .invalid_input {
-  border-color: #fd4848;
+  border: 2px solid #fd4848 !important;
 }
