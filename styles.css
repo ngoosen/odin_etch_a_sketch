@@ -50,7 +50,7 @@ button:hover {
 }
 
 .slot_hovered {
-  background-color: #616161;
+  background-color: rgb(97, 97, 97);
 }
 
 .buttons {
@@ -83,6 +83,8 @@ button:hover {
 #clearGrid,
 #toggleGridSizeInput {
   position: relative;
+
+  flex-shrink: 0;
 
   appearance: none;
   border: none;
@@ -131,7 +133,7 @@ button:hover {
   top: -25px;
 
   width: 230px;
-  height: 200px;
+  height: 130px;
 
   padding: 10px;
   padding-top: 30px;
@@ -194,4 +196,13 @@ button:hover {
 
 .invalid_input {
   border: 2px solid #fd4848 !important;
+}
+
+.check_boxes {
+  width: 100%;
+  margin-top: -25px;
+}
+
+.check_boxes input {
+  margin: 7px 0;
 }

@@ -1,6 +1,8 @@
 let gridSize = 16;
 let showMenu = false;
 let showGridSizeInput = false;
+let rainbowColors = false;
+let colorsOpacity = false;
 
 const container = document.querySelector("main");
 const changeGridSizeInput = document.querySelector("#size");
@@ -10,13 +12,17 @@ function generateRandomColour() {
   const g = Math.round(Math.random() * 255);
   const b = Math.round(Math.random() * 255);
 
-  return `rgba(${r}, ${g}, ${b}, .1)`;
+  return `rgba(${r}, ${g}, ${b}, ${colorsOpacity ? .1 : 1})`;
 }
 
 function updateAlpha(color) {
   const cleanedString = color.replace("rgba(", "").replace(")", "");
   const splitString = cleanedString.split(",");
   const currentAlpha = splitString.slice(-1)[0];
+
+  if (!colorsOpacity) {
+    return `rgba(${splitString[0]}, ${splitString[1]}, ${splitString[2]}, 1`;
+  }
 
   if (parseInt(currentAlpha) >= 1) {
     return;
@@ -29,8 +35,31 @@ function updateAlpha(color) {
 function setSlotBackground(event) {
   const currentColor = event.target.style.backgroundColor;
 
+  //? No background color is defined yet
   if (currentColor === "") {
-    event.target.style.backgroundColor = generateRandomColour();
+    if (rainbowColors) {
+      event.target.style.backgroundColor = generateRandomColour();
+    } else {
+      event.target.style.backgroundColor = colorsOpacity ? "rgba(97, 97, 97, .1)" : "rgba(97, 97, 97, 1)";
+    }
+    return;
+  }
+
+  //? The current background color is the default grey (no rainbow)
+  if (currentColor.startsWith("rgba(97, 97, 97") || currentColor.startsWith("rgb(97, 97, 97")) {
+    if (rainbowColors) {
+      event.target.style.backgroundColor = generateRandomColour();
+    } else if (colorsOpacity) {
+      event.target.style.backgroundColor = updateAlpha(currentColor);
+    }
+    return;
+  }
+
+  //? The current background color is a random colour
+  if (!rainbowColors && !colorsOpacity) {
+    event.target.style.backgroundColor = "rgba(97, 97, 97, 1)";
+  } else if (!rainbowColors) {
+    event.target.style.backgroundColor = colorsOpacity ? "rgba(97, 97, 97, .1)" : "rgba(97, 97, 97, 1)";
   } else {
     event.target.style.backgroundColor = updateAlpha(currentColor);
   }
@@ -97,6 +126,14 @@ function changeGridSize() {
   drawGrid();
 }
 
+function toggleRainbowColors(event) {
+  rainbowColors = event.target.checked;
+}
+
+function toggleColorsOpacity(event) {
+  colorsOpacity = event.target.checked;
+}
+
 const toggleButtonsMenuButton = document.querySelector("#showButtons");
 toggleButtonsMenuButton.addEventListener("click", toggleMenu);
 
@@ -110,5 +147,11 @@ const changeGridSizeButton = document.querySelector("#changeGridSize");
 changeGridSizeButton.addEventListener("click", changeGridSize);
 
 changeGridSizeInput.addEventListener("focus", () => changeGridSizeInput.classList.remove("invalid_input"));
+
+const rainbowToggleCheckbox = document.querySelector("#rainbow");
+rainbowToggleCheckbox.addEventListener("click", toggleRainbowColors);
+
+const alphaToggleCheckbox = document.querySelector("#alpha");
+alphaToggleCheckbox.addEventListener("click", toggleColorsOpacity);
 
 drawGrid();
