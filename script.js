@@ -54,6 +54,8 @@ function setSlotBackground(event) {
       event.target.style.backgroundColor = generateRandomColour();
     } else if (colorsOpacity) {
       event.target.style.backgroundColor = updateAlpha(currentColor);
+    } else {
+      event.target.style.backgroundColor = "rgba(97, 97, 97, 1)";
     }
     return;
   }
