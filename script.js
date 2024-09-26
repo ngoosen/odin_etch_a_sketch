@@ -4,6 +4,9 @@ let showGridSizeInput = false;
 let rainbowColors = false;
 let colorsOpacity = false;
 
+const leftArrowFA = "<i class='fa-solid fa-arrow-left'></i>";
+const rightArrowFA = "<i class='fa-solid fa-arrow-right'></i>";
+
 const container = document.querySelector("main");
 const changeGridSizeInput = document.querySelector("#size");
 
@@ -88,11 +91,14 @@ function drawGrid() {
 function toggleMenu() {
   showMenu = !showMenu;
   const menuDiv = document.querySelector(".buttons");
+  const button = document.querySelector("#showButtons");
 
   if (showMenu) {
     menuDiv.classList.remove("buttons_hidden");
+    button.innerHTML = rightArrowFA;
   } else {
     menuDiv.classList.add("buttons_hidden");
+    button.innerHTML = leftArrowFA;
   }
 }
 
